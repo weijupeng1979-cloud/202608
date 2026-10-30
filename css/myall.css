@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+            margin: 10;
+            padding: 0;
+        }
+        body{
+            font-family: "Noto Serif Display", serif;
+        }
+     :root{
+      /* 主要背景：聖誕雪夜深藍 */
+  --bg001: #3905e6;
+
+  /* 次要背景：經典聖誕紅 (帶 20% 透明度) */
+  --bg002: #d4242633;
+
+  /* 按鈕/元件主色：松針深綠 (帶 50% 透明度) */
+  --bot001: #2f523380;
+
+  /* 懸停狀態：金燦聖誕黃 */
+  --bot001hover: #f4c430;
+
+  /* 主要文字：高對比奶油雪白 */
+  --text001: #e3eaf2;
+   /* 主要文字：高對比奶油雪白 */
+  --text002: #26507a;
+
+  /* 新增 5 筆聖誕主題變數 */
+
+  /* 次要文字：暖金文字 */
+  --text002: #ffeaa7;
+
+  /* 點綴色：經典聖誕鮮紅 */
+  --accent-red: #d42426;
+
+  /* 點綴色：冬日松針綠 */
+  --accent-green: #2f5233;
+
+  /* 邊框色：閃耀金邊 (帶 30% 透明度) */
+  --border001: #ffd7004d;
+
+  /* 卡片/容器背景：柔和雪白 (帶 10% 透明度) */
+  --card-bg: #ffffff1a;
+     }   
+     .fw-100{
+        font-weight: 100;
+     }
+     .fw-200{
+        font-weight: 200;
+    }
+     
+     .fw-300{
+        font-weight: 300;
+    }
+    .fw-400{
+        font-weight: 400;
+    }
+    .fw-500{
+        font-weight: 500;
+    }
+    .fw-600{
+        font-weight: 600;
+    }
+    .fw-700{
+        font-weight: 700;
+    }
+    .fw-800{
+        font-weight: 800;
+    }
+    .fw-900{
+        font-weight: 900;
+    }

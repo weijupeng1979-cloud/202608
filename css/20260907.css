@@ -1,0 +1,125 @@
+
+        .wrapper{
+            background-color: var(--accent-red);
+            width: 1024px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo{
+            width: 1024px;
+            height: 200px;
+           background-color: aquamarine;
+            margin-bottom: 5px;
+            background-image: url(../image/land003.avif);
+            background-position: center;
+            
+        }
+        nav{
+            background-color:var(--bg002);
+            text-align: center;
+            margin-top: 5px;
+            padding-top: 20px;
+            padding-bottom: 5px;
+            width: 1024px;
+        }
+        nav ul {
+            display: inline-block;
+        }
+        nav ul li {
+            float: left;
+             list-style-type: none;
+        }
+        nav ul li a{
+            color: rgb(213, 192, 233);
+            text-decoration: none;
+            background-color: rgb(238, 132, 216);
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-left: 10px;
+           margin-right: 10px;
+           border-radius: 8px;
+           font-size: 30px;
+            box-shadow: 2px 2px 2px 2px #828080;
+        }
+        nav ul li a:hover{
+            color:var(--bot001hover) ;
+            box-shadow: 2px 2px 2px 2px #2c1452;
+        }
+        
+        .content h1{
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            color: rgb(19, 108, 49);
+        }
+        .content .box01 {
+            width: 49%;
+            height: 160px;
+            background-color: var(--bg002);
+            background-image: url(../image/land006.avif);
+            background-position: center center;
+            background-size: cover;
+            float: left;
+        }
+        .content .box02{
+            width: 49%;
+            height: 160px;
+            background-color: burlywood;
+            background-image: url(../image/land001.avif);
+            background-position: center center;
+            float: left;
+        }
+        .content p{
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: var(--text002);
+            
+        }
+        .content a{
+            display: block;
+            background-color: var(--bg002);
+            width: 80px;
+            height: 20px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: aliceblue;
+            font-weight: bold;
+            box-shadow: 2px 2px 2px 2px #828080;
+        }
+        .footer{
+            background-color: blueviolet;
+            width: 1024px;
+            height: 40px;
+            text-align: center;
+        }
+      @media screen and (max-width: 1024px) {
+            .wrapper{
+                width: 95%;
+            }
+            .banner.logo{
+                width: 100%;
+                height: 100px;
+                background-color: aquamarine;
+            }
+            @media screen and (max-width:768px) {
+                nav ul{
+                    display: block;
+                }
+                nav ul li{
+                    float: none;
+                    margin-bottom: 6px;
+                }
+            }
+    
+        }

@@ -1,0 +1,865 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PET LUXE｜精品寵物生活館</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+
+    <style>
+        /* =========================
+           全站基本設定
+        ========================= */
+        :root {
+            --pet-primary: #20b2aa;
+            --pet-dark: #087f8c;
+            --pet-light: #e0f7f5;
+            --pet-pale: #f2fbfa;
+            --pet-accent: #8edbd4;
+            --pet-text: #365b60;
+        }
+
+        body {
+            background-color: var(--pet-pale);
+            color: var(--pet-text);
+            font-family: "Microsoft JhengHei", sans-serif;
+        }
+
+        /* =========================
+           Header
+        ========================= */
+        .box01 {
+            height: 160px;
+            font-size: 58px;
+            font-weight: 900;
+            text-align: center;
+            line-height: 160px;
+        }
+
+        .pet-header {
+            height: auto;
+            min-height: 160px;
+            line-height: normal;
+            padding: 25px 15px;
+            background: linear-gradient(135deg, #087f8c, #20b2aa, #8edbd4);
+            color: white;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(8, 127, 140, 0.18);
+        }
+
+        .pet-logo {
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .pet-slogan {
+            margin-top: 10px;
+            font-size: 17px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .pet-nav {
+            margin-top: 18px;
+        }
+
+        .pet-nav a {
+            display: inline-block;
+            margin: 4px 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .pet-nav a:hover {
+            color: #d9fffa;
+        }
+
+        /* =========================
+           商品分類標題
+        ========================= */
+        .section-title {
+            margin: 35px 0 10px;
+            padding: 15px;
+            color: var(--pet-dark);
+            font-size: 27px;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+
+        .section-subtitle {
+            margin-bottom: 20px;
+            color: #72999b;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* =========================
+           商品卡片
+        ========================= */
+        .product-card {
+            height: 100%;
+            overflow: hidden;
+            background-color: white;
+            border: 1px solid #d7efec;
+            border-radius: 18px;
+            box-shadow: 0 5px 15px rgba(8, 127, 140, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px rgba(8, 127, 140, 0.18);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-info {
+            padding: 18px;
+            text-align: center;
+        }
+
+        .product-category {
+            display: inline-block;
+            padding: 5px 12px;
+            margin-bottom: 10px;
+            background-color: var(--pet-light);
+            color: var(--pet-dark);
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .product-name {
+            margin-bottom: 10px;
+            color: #285b60;
+            font-size: 19px;
+            font-weight: 900;
+        }
+
+        .product-desc {
+            min-height: 44px;
+            margin-bottom: 12px;
+            color: #789294;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .product-price {
+            margin-bottom: 15px;
+            color: #079b96;
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+        .product-price small {
+            font-size: 13px;
+        }
+
+        /* =========================
+           購物按鈕
+        ========================= */
+        .btn-pet {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #20b2aa, #087f8c);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-pet:hover {
+            background: #075f69;
+            color: white;
+        }
+
+        /* =========================
+           第二區塊：精選推薦
+        ========================= */
+        .featured-card {
+            background: linear-gradient(145deg, #e0f7f5, #ffffff);
+            border: 1px solid #b9e9e4;
+        }
+
+        .featured-card .product-name {
+            color: #087f8c;
+        }
+
+        /* =========================
+           第三區塊：寵物生活用品
+        ========================= */
+        .life-card {
+            border-top: 5px solid #8edbd4;
+        }
+
+        /* =========================
+           購物車提示
+        ========================= */
+        .cart-count {
+            display: inline-block;
+            min-width: 24px;
+            padding: 3px 7px;
+            background-color: white;
+            color: #087f8c;
+            border-radius: 20px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* =========================
+           Footer
+        ========================= */
+        .pet-footer {
+            height: auto;
+            min-height: 160px;
+            margin-top: 35px;
+            padding: 25px 15px;
+            background: linear-gradient(135deg, #087f8c, #20b2aa);
+            color: white;
+            border-radius: 18px;
+            text-align: center;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .footer-title {
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .footer-copy {
+            margin-top: 12px;
+            color: #d9fffa;
+            font-size: 12px;
+        }
+
+        /* =========================
+           RWD 手機版
+        ========================= */
+        @media (max-width: 575.98px) {
+            .pet-logo {
+                font-size: 27px;
+            }
+
+            .pet-slogan {
+                font-size: 14px;
+            }
+
+            .pet-nav a {
+                margin: 5px 7px;
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .product-img {
+                height: 180px;
+            }
+
+            .product-info {
+                padding: 12px;
+            }
+
+            .product-name {
+                font-size: 16px;
+            }
+
+            .product-price {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- =========================
+             Header：網站標題與導覽
+        ========================= -->
+        <div class="row">
+            <div class="col-12 mt-3">
+                <div class="box01 pet-header">
+
+                    <div class="pet-logo">
+                        PET LUXE
+                    </div>
+
+                    <div class="pet-slogan">
+                        精品寵物生活館｜給毛孩最好的生活
+                    </div>
+
+                    <div class="pet-nav">
+                        <a href="#products">人氣商品</a>
+                        <a href="#featured">精選推薦</a>
+                        <a href="#life">生活用品</a>
+                        <a href="#footer">
+                            購物車
+                            <span class="cart-count" id="cartCount">0</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- =========================
+             第一區塊：人氣商品
+             使用圖片 001、002、003
+        ========================= -->
+        <h2 class="section-title" id="products">
+            ✦ 人氣寵物商品 ✦
+        </h2>
+
+        <div class="section-subtitle">
+            BEST SELLERS｜為毛孩挑選質感好物
+        </div>
+
+        <div class="row">
+
+            <!-- 商品 01 -->
+            <div class="col-sm-6 col-lg-4 col-xxl-2 mt-3">
+                <div class="product-card">
+
+                    <img src="image/001.jpg"
+                         class="product-img"
+                         alt="精品寵物項圈">
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            精選配件
+                        </span>
+
+                        <div class="product-name">
+                            精品寵物項圈
+                        </div>
+
+                        <div class="product-desc">
+                            簡約優雅設計，展現毛孩獨特氣質。
+                        </div>
+
+                        <div class="product-price">
+                            NT$680
+                        </div>
+
+                        <button class="btn btn-pet"
+                                onclick="addToCart('精品寵物項圈', 680)">
+                            加入購物車
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 商品 02 -->
+            <div class="col-sm-6 col-lg-4 col-xxl-2 mt-3">
+                <div class="product-card">
+
+                    <img src="image/002.jpg"
+                         class="product-img"
+                         alt="寵物精品外出包">
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            外出用品
+                        </span>
+
+                        <div class="product-name">
+                            精品外出包
+                        </div>
+
+                        <div class="product-desc">
+                            輕巧舒適設計，陪伴毛孩自在出遊。
+                        </div>
+
+                        <div class="product-price">
+                            NT$1,280
+                        </div>
+
+                        <button class="btn btn-pet"
+                                onclick="addToCart('精品外出包', 1280)">
+                            加入購物車
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 商品 03 -->
+            <div class="col-sm-6 col-lg-4 col-xxl-2 mt-3">
+                <div class="product-card">
+
+                    <img src="image/003.jpg"
+                         class="product-img"
+                         alt="寵物舒適睡墊">
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            舒適生活
+                        </span>
+
+                        <div class="product-name">
+                            雲朵舒適睡墊
+                        </div>
+
+                        <div class="product-desc">
+                            柔軟親膚材質，打造安心休息空間。
+                        </div>
+
+                        <div class="product-price">
+                            NT$1,580
+                        </div>
+
+                        <button class="btn btn-pet"
+                                onclick="addToCart('雲朵舒適睡墊', 1580)">
+                            加入購物車
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             第二區塊：精選推薦
+             使用圖片 004、005、006
+        ========================= -->
+        <h2 class="section-title" id="featured">
+            ✦ 精品嚴選推薦 ✦
+        </h2>
+
+        <div class="section-subtitle">
+            PET LUXURY｜讓日常生活更有質感
+        </div>
+
+        <div class="row">
+
+            <!-- 商品 04 -->
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3">
+                <div class="product-card featured-card">
+
+                    <img src="image/004.jpg"
+                         class="product-img"
+                         alt="寵物精緻餐碗">
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            飲食用品
+                        </span>
+
+                        <div class="product-name">
+                            質感寵物餐碗
+                        </div>
+
+                        <div class="product-desc">
+                            優雅外型，讓每一餐都充滿儀式感。
+                        </div>
+
+                        <div class="product-price">
+                            NT$880
+                        </div>
+
+                        <button class="btn btn-pet"
+                                onclick="addToCart('質感寵物餐碗', 880)">
+                            加入購物車
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 商品 05 -->
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3">
+                <div class="product-card featured-card">
+
+                    <img src="image/005.jpg"
+                         class="product-img"
+                         alt="寵物玩具">
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            趣味玩具
+                        </span>
+
+                        <div class="product-name">
+                            毛孩療癒玩具
+                        </div>
+
+                        <div class="product-desc">
+                            增添生活樂趣，陪伴毛孩快樂玩耍。
+                        </div>
+
+                        <div class="product-price">
+                            NT$350
+                        </div>
+
+                        <button class="btn btn-pet"
+                                onclick="addToCart('毛孩療癒玩具', 350)">
+                            加入購物車
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 商品 06 -->
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3">
+                <div class="product-card featured-card">
+
+                    <img src="image/006.jpg"
+                         class="product-img"
+                         alt="寵物梳毛工具">
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            美容護理
+                        </span>
+
+                        <div class="product-name">
+                            寵物柔順梳
+                        </div>
+
+                        <div class="product-desc">
+                            日常毛髮整理，享受溫柔的梳理時光。
+                        </div>
+
+                        <div class="product-price">
+                            NT$420
+                        </div>
+
+                        <button class="btn btn-pet"
+                                onclick="addToCart('寵物柔順梳', 420)">
+                            加入購物車
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 商品 07 -->
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3 d-none d-xxl-block">
+                <div class="product-card featured-card">
+
+                    <img src="image/007.jpg"
+                         class="product-img"
+                         alt="寵物精品服飾">
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            時尚穿搭
+                        </span>
+
+                        <div class="product-name">
+                            寵物時尚服飾
+                        </div>
+
+                        <div class="product-desc">
+                            俐落時尚剪裁，展現毛孩迷人魅力。
+                        </div>
+
+                        <div class="product-price">
+                            NT$980
+                        </div>
+
+                        <button class="btn btn-pet"
+                                onclick="addToCart('寵物時尚服飾', 980)">
+                            加入購物車
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 商品 08 -->
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3 d-none d-xxl-block">
+                <div class="product-card featured-card">
+
+                    <img src="image/008.jpg"
+                         class="product-img"
+                         alt="寵物外出牽繩">
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            散步配件
+                        </span>
+
+                        <div class="product-name">
+                            精品散步牽繩
+                        </div>
+
+                        <div class="product-desc">
+                            質感與實用兼具，享受每一次散步。
+                        </div>
+
+                        <div class="product-price">
+                            NT$750
+                        </div>
+
+                        <button class="btn btn-pet"
+                                onclick="addToCart('精品散步牽繩', 750)">
+                            加入購物車
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 商品 09 -->
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3 d-none d-xxl-block">
+                <div class="product-card featured-card">
+
+                    <img src="image/009.jpg"
+                         class="product-img"
+                         alt="寵物居家用品">
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            居家生活
+                        </span>
+
+                        <div class="product-name">
+                            寵物居家精品
+                        </div>
+
+                        <div class="product-desc">
+                            精緻生活選品，為居家增添幸福感。
+                        </div>
+
+                        <div class="product-price">
+                            NT$1,180
+                        </div>
+
+                        <button class="btn btn-pet"
+                                onclick="addToCart('寵物居家精品', 1180)">
+                            加入購物車
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             第三區塊：寵物生活用品
+             沿用原本第三組格線
+        ========================= -->
+        <h2 class="section-title" id="life">
+            ✦ 寵愛生活提案 ✦
+        </h2>
+
+        <div class="section-subtitle">
+            LOVE YOUR PET｜從日常細節開始寵愛
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="product-card life-card">
+                    <div class="product-info">
+                        <span class="product-category">日常照護</span>
+                        <div class="product-name">細心呵護</div>
+                        <div class="product-desc">
+                            挑選適合毛孩的日常照護用品。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="product-card life-card">
+                    <div class="product-info">
+                        <span class="product-category">健康飲食</span>
+                        <div class="product-name">安心每一餐</div>
+                        <div class="product-desc">
+                            用心挑選，陪伴毛孩健康成長。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="product-card life-card">
+                    <div class="product-info">
+                        <span class="product-category">快樂玩樂</span>
+                        <div class="product-name">歡樂每一天</div>
+                        <div class="product-desc">
+                            讓玩樂成為毛孩生活中的小確幸。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="product-card life-card">
+                    <div class="product-info">
+                        <span class="product-category">質感生活</span>
+                        <div class="product-name">專屬幸福感</div>
+                        <div class="product-desc">
+                            為毛孩與家人打造舒適生活空間。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="product-card life-card">
+                    <div class="product-info">
+                        <span class="product-category">時尚配件</span>
+                        <div class="product-name">風格穿搭</div>
+                        <div class="product-desc">
+                            以簡約風格展現毛孩獨特個性。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="product-card life-card">
+                    <div class="product-info">
+                        <span class="product-category">外出旅行</span>
+                        <div class="product-name">探索新世界</div>
+                        <div class="product-desc">
+                            準備實用配件，享受安心的旅程。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="product-card life-card">
+                    <div class="product-info">
+                        <span class="product-category">舒適休息</span>
+                        <div class="product-name">安心好眠</div>
+                        <div class="product-desc">
+                            為毛孩準備舒服自在的休息環境。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="product-card life-card">
+                    <div class="product-info">
+                        <span class="product-category">貼心服務</span>
+                        <div class="product-name">用心對待</div>
+                        <div class="product-desc">
+                            每一份選品，都承載對毛孩的關愛。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             Footer：網站資訊
+        ========================= -->
+        <div class="row">
+            <div class="col-12 mt-3">
+                <div class="pet-footer" id="footer">
+
+                    <div class="footer-title">
+                        PET LUXE 精品寵物生活館
+                    </div>
+
+                    <div>
+                        用心挑選每一件好物，讓毛孩享受更好的生活。
+                    </div>
+
+                    <div>
+                        精品配件｜寵物用品｜居家生活
+                    </div>
+
+                    <div class="footer-copy">
+                        © 2026 PET LUXE. All Rights Reserved.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         Bootstrap JavaScript
+    ========================= -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- =========================
+         原生 JavaScript：購物車示範
+    ========================= -->
+    <script>
+        // 購物車商品總數
+        let cartCount = 0;
+
+        // 購物車商品總金額
+        let cartTotal = 0;
+
+        // 加入購物車函式
+        function addToCart(productName, price) {
+
+            // 商品數量加 1
+            cartCount++;
+
+            // 累加商品價格
+            cartTotal += price;
+
+            // 更新畫面上的購物車數量
+            document.getElementById("cartCount").textContent = cartCount;
+
+            // 顯示加入購物車訊息
+            alert(
+                "已加入購物車！\n" +
+                "商品名稱：" + productName + "\n" +
+                "商品價格：NT$" + price.toLocaleString("zh-TW") + "\n" +
+                "購物車商品數量：" + cartCount + "\n" +
+                "目前商品總金額：NT$" + cartTotal.toLocaleString("zh-TW")
+            );
+        }
+    </script>
+
+</body>
+
+</html>
