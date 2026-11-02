@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人履歷｜前端工程師</title>
+
+    <!-- Bootstrap 5 CSS：使用 Bootstrap 進行 RWD 切版 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* ===== 全站配色：前衛科技風格 ===== */
+        :root {
+            --bg: #080d18;
+            --panel: #101a2b;
+            --panel-light: #15233a;
+            --text: #edf5ff;
+            --muted: #a5b5ca;
+            --cyan: #35e0ff;
+            --purple: #a78bfa;
+            --line: rgba(106, 190, 255, 0.22);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background:
+                radial-gradient(circle at 10% 5%, rgba(53, 224, 255, .12), transparent 28rem),
+                radial-gradient(circle at 90% 20%, rgba(167, 139, 250, .12), transparent 30rem),
+                var(--bg);
+            color: var(--text);
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            line-height: 1.75;
+        }
+
+        a { text-decoration: none; }
+
+        .navbar {
+            background: rgba(8, 13, 24, .88);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(14px);
+        }
+
+        .navbar-brand, .text-cyan { color: var(--cyan) !important; }
+        .nav-link { color: var(--muted) !important; }
+        .nav-link:hover { color: var(--cyan) !important; }
+
+        .hero {
+            min-height: 82vh;
+            display: flex;
+            align-items: center;
+            padding-top: 7rem;
+            padding-bottom: 5rem;
+        }
+
+        .eyebrow {
+            color: var(--cyan);
+            letter-spacing: .18em;
+            font-size: .85rem;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.15;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-card, .tech-card, .timeline-card, .contact-card {
+            background: linear-gradient(145deg, rgba(21, 35, 58, .95), rgba(12, 20, 35, .96));
+            border: 1px solid var(--line);
+            border-radius: 1.25rem;
+            box-shadow: 0 18px 55px rgba(0, 0, 0, .18);
+        }
+
+        .profile-orbit {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 1.5rem;
+            border: 1px solid rgba(53, 224, 255, .55);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            position: relative;
+            background: radial-gradient(circle, rgba(53,224,255,.13), transparent 65%);
+        }
+
+        .profile-orbit::before, .profile-orbit::after {
+            content: "";
+            position: absolute;
+            border: 1px dashed rgba(167, 139, 250, .65);
+            border-radius: 50%;
+        }
+
+        .profile-orbit::before { inset: 14px; }
+        .profile-orbit::after { inset: -10px; border-color: rgba(53,224,255,.28); }
+
+        .profile-initial {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--cyan);
+            text-shadow: 0 0 25px rgba(53,224,255,.5);
+        }
+
+        .section { padding: 5rem 0; }
+        .section-title { font-weight: 800; margin-bottom: .5rem; }
+        .section-subtitle { color: var(--muted); margin-bottom: 2.5rem; }
+
+        .tech-card, .timeline-card, .contact-card {
+            height: 100%;
+            padding: 1.5rem;
+            transition: transform .25s ease, border-color .25s ease;
+        }
+
+        .tech-card:hover, .timeline-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(53,224,255,.65);
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            color: var(--cyan);
+            background: rgba(53,224,255,.1);
+            border: 1px solid rgba(53,224,255,.25);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            border: 1px solid rgba(53,224,255,.25);
+            background: rgba(53,224,255,.08);
+            color: #a7f2ff;
+            padding: .25rem .65rem;
+            border-radius: 999px;
+            font-size: .82rem;
+            margin: .2rem .15rem .2rem 0;
+        }
+
+        .timeline-date { color: var(--cyan); font-size: .9rem; font-weight: 700; }
+        .muted { color: var(--muted); }
+
+        .btn-tech {
+            background: linear-gradient(100deg, var(--cyan), #8da8ff);
+            color: #07111d;
+            border: 0;
+            font-weight: 800;
+            border-radius: .7rem;
+            padding: .75rem 1.2rem;
+        }
+
+        .btn-tech:hover { color: #07111d; filter: brightness(1.08); transform: translateY(-1px); }
+
+        .btn-outline-tech {
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+            border-radius: .7rem;
+            padding: .7rem 1.1rem;
+        }
+
+        .btn-outline-tech:hover { background: rgba(53,224,255,.1); color: #fff; }
+
+        .project-number { color: rgba(53,224,255,.65); font-size: .85rem; letter-spacing: .12em; }
+        .project-card { display: flex; flex-direction: column; }
+        .project-card .project-actions { margin-top: auto; padding-top: 1.2rem; }
+
+        .skill-bar {
+            height: 7px;
+            background: #26354b;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
+            border-radius: 999px;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            padding: 1.5rem 0;
+        }
+
+        @media (max-width: 767.98px) {
+            .hero { min-height: auto; text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .section { padding: 3.5rem 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導覽列：使用 Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">&lt;MY PROFILE /&gt;</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false"
+                    aria-label="切換導覽選單">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">關於我</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">學經歷</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">技能</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">作品集</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">聯絡我</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首頁主視覺 -->
+    <header class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <p class="eyebrow mb-3">HELLO, WORLD!　/　FRONT-END DEVELOPER</p>
+                    <!-- TODO：請將「你的姓名」換成自己的姓名 -->
+                    <h1 class="mb-4">你好，我是<br><span class="gradient-text">你的姓名</span></h1>
+                    <h2 class="h4 mb-3">前端工程師求職者</h2>
+                    <p class="muted fs-5 mb-4">
+                        我熱衷於打造兼具視覺設計、使用者體驗與響應式版面的網站。
+                        持續學習 HTML、CSS、JavaScript 與 Bootstrap，
+                        希望將想法轉化為清楚、流暢且實用的數位體驗。
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 hero-buttons">
+                        <a class="btn btn-tech" href="#projects">查看我的作品 ↘</a>
+                        <!-- TODO：將 email@example.com 改成自己的 Email -->
+                        <a class="btn btn-outline-tech" href="mailto:email@example.com">聯絡我</a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="hero-card p-4 p-md-5 text-center">
+                        <div class="profile-orbit">
+                            <!-- 這裡先用姓名縮寫代替照片，也可以改成自己的大頭照 -->
+                            <div class="profile-initial">ME</div>
+                        </div>
+                        <p class="eyebrow mb-1">CURRENT OBJECTIVE</p>
+                        <h3 class="h4 mb-2">Junior Front-End Developer</h3>
+                        <p class="muted mb-0">持續學習・動手實作・解決問題</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 關於我 -->
+        <section class="section" id="about">
+            <div class="container">
+                <p class="eyebrow">01 / ABOUT ME</p>
+                <h2 class="section-title">關於我</h2>
+                <p class="section-subtitle">用簡單、清楚的方式介紹自己。</p>
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="tech-card">
+                            <h3 class="h5 mb-3">自我介紹</h3>
+                            <p class="muted mb-0">
+                                我是一位積極投入前端網頁開發的求職者，喜歡把設計概念轉化成實際可操作的網頁。
+                                學習過程中，我透過練習與作品製作累積經驗，並持續改善程式結構、版面配置與使用者操作流程。
+                                期待加入團隊，與同事共同完成產品，也願意主動學習新技術。
+                            </p>
+                            <!-- TODO：依照自己的實際狀況修改，不符合的描述請刪除 -->
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="tech-card">
+                            <h3 class="h5 mb-3">基本資料</h3>
+                            <p class="mb-2"><span class="text-cyan">姓名：</span>你的姓名</p>
+                            <p class="mb-2"><span class="text-cyan">所在地：</span>台灣（可自行修改）</p>
+                            <p class="mb-2"><span class="text-cyan">求職職位：</span>前端工程師</p>
+                            <p class="mb-0"><span class="text-cyan">Email：</span>email@example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 學歷與經歷 -->
+        <section class="section" id="experience">
+            <div class="container">
+                <p class="eyebrow">02 / EDUCATION & EXPERIENCE</p>
+                <h2 class="section-title">學經歷</h2>
+                <p class="section-subtitle">請將範例內容替換成自己的真實資料。</p>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="timeline-card">
+                            <div class="icon-box">🎓</div>
+                            <p class="timeline-date mb-1">YYYY — YYYY</p>
+                            <h3 class="h5">學校名稱｜科系名稱</h3>
+                            <p class="muted mb-0">學歷：請填入學位、主修課程、專題或相關學習成果。</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="timeline-card">
+                            <div class="icon-box">💻</div>
+                            <p class="timeline-date mb-1">YYYY — YYYY / 目前</p>
+                            <h3 class="h5">網頁開發學習／訓練經歷</h3>
+                            <p class="muted mb-0">請填入課程名稱、訓練單位、學習內容，以及完成的練習或專題。</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="timeline-card">
+                            <div class="icon-box">🚀</div>
+                            <p class="timeline-date mb-1">YYYY — YYYY</p>
+                            <h3 class="h5">工作經歷／專案經驗</h3>
+                            <p class="muted mb-0">若有工作經歷，請填入公司、職稱、工作內容與具體成果；沒有可刪除此區塊。</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="timeline-card">
+                            <div class="icon-box">📘</div>
+                            <p class="timeline-date mb-1">持續進修</p>
+                            <h3 class="h5">自學與技術精進</h3>
+                            <p class="muted mb-0">例如：HTML、CSS、Bootstrap、JavaScript、Git，或其他實際學習中的技術。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技能 -->
+        <section class="section" id="skills">
+            <div class="container">
+                <p class="eyebrow">03 / TECH STACK</p>
+                <h2 class="section-title">專業技能</h2>
+                <p class="section-subtitle">技能程度請依照自己的實際能力調整，不需要誇大。</p>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="tech-card">
+                            <div class="icon-box">⌘</div>
+                            <h3 class="h5">HTML5</h3>
+                            <p class="muted small">網頁結構、語意化標籤、表單</p>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="tech-card">
+                            <div class="icon-box">✦</div>
+                            <h3 class="h5">CSS3</h3>
+                            <p class="muted small">版面配置、色彩、RWD</p>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 65%"></div></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="tech-card">
+                            <div class="icon-box">▦</div>
+                            <h3 class="h5">Bootstrap</h3>
+                            <p class="muted small">Grid 系統、元件、響應式切版</p>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="tech-card">
+                            <div class="icon-box">JS</div>
+                            <h3 class="h5">JavaScript</h3>
+                            <p class="muted small">變數、函式、DOM 操作（依實際程度調整）</p>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 45%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="tag">RWD 響應式網頁</span>
+                    <span class="tag">Git（如已學習）</span>
+                    <span class="tag">VS Code</span>
+                    <span class="tag">UI / UX 基礎</span>
+                    <span class="tag">持續學習</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 作品集：按鈕連結由使用者自行設定 -->
+        <section class="section" id="projects">
+            <div class="container">
+                <p class="eyebrow">04 / SELECTED WORKS</p>
+                <h2 class="section-title">作品集</h2>
+                <p class="section-subtitle">點擊作品按鈕即可前往專案。請將連結改成自己的作品網址。</p>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <article class="tech-card project-card">
+                            <p class="project-number">PROJECT / 01</p>
+                            <h3 class="h5">響應式形象網站</h3>
+                            <p class="muted">使用 Bootstrap Grid 與元件建立桌機、平板及手機皆能瀏覽的網站。</p>
+                            <div class="mb-3">
+                                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Bootstrap</span>
+                            </div>
+                            <div class="project-actions">
+                                <!-- TODO：把 href="#" 改成作品網址，例如 https://你的帳號.github.io/專案名稱/ -->
+                                <a class="btn btn-tech btn-sm" href="20261030-ch6-ex03-AI" target="_blank" rel="noopener noreferrer">查看作品 ↗</a>
+                                <a class="btn btn-outline-tech btn-sm ms-2" href="#" target="_blank" rel="noopener noreferrer">原始碼 ↗</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <article class="tech-card project-card">
+                            <p class="project-number">PROJECT / 02</p>
+                            <h3 class="h5">購物網站版型</h3>
+                            <p class="muted">設計商品卡片、導覽列與分類版面，呈現清楚的商品資訊和瀏覽動線。</p>
+                            <div class="mb-3">
+                                <span class="tag">Bootstrap</span><span class="tag">RWD</span><span class="tag">UI Design</span>
+                            </div>
+                            <div class="project-actions">
+                                <!-- TODO：請修改下方兩個 href -->
+                                <a class="btn btn-tech btn-sm" href="#" target="_blank" rel="noopener noreferrer">查看作品 ↗</a>
+                                <a class="btn btn-outline-tech btn-sm ms-2" href="20261102_AI02" target="_blank" rel="noopener noreferrer">原始碼 ↗</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <article class="tech-card project-card">
+                            <p class="project-number">PROJECT / 03</p>
+                            <h3 class="h5">JavaScript 互動專案</h3>
+                            <p class="muted">運用 JavaScript 製作互動功能，例如表單驗證、資料呈現或簡易計算工具。</p>
+                            <div class="mb-3">
+                                <span class="tag">JavaScript</span><span class="tag">DOM</span><span class="tag">HTML</span>
+                            </div>
+                            <div class="project-actions">
+                                <!-- TODO：請修改下方兩個 href -->
+                                <a class="btn btn-tech btn-sm" href="#" target="_blank" rel="noopener noreferrer">查看作品 ↗</a>
+                                <a class="btn btn-outline-tech btn-sm ms-2" href="#" target="_blank" rel="noopener noreferrer">原始碼 ↗</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="alert mt-4 mb-0" role="note"
+                     style="background:rgba(53,224,255,.07); border:1px solid var(--line); color:var(--muted);">
+                    <strong class="text-cyan">連結設定提醒：</strong>
+                    找到作品區塊的 <code>href="#"</code>，將 <code>#</code> 替換成你的作品網址；
+                    「查看作品」可連到網站，「原始碼」可連到 GitHub 儲存庫。
+                </div>
+            </div>
+        </section>
+
+        <!-- 聯絡方式 -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="contact-card text-center p-4 p-md-5">
+                    <p class="eyebrow">05 / CONTACT</p>
+                    <h2 class="section-title">一起打造更好的網頁體驗</h2>
+                    <p class="muted mb-4">期待有機會進一步交流，謝謝您閱讀我的履歷。</p>
+                    <!-- TODO：把 Email、GitHub 連結換成自己的資料 -->
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a class="btn btn-tech" href="mailto:email@example.com">Email 聯絡我</a>
+                        <a class="btn btn-outline-tech" href="#" target="_blank" rel="noopener noreferrer">我的 GitHub ↗</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <span>© <span id="currentYear"></span> 你的姓名. All rights reserved.</span>
+            <span>Designed with Bootstrap · Built for the web</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript：讓手機版導覽列可以展開／收合 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 自動顯示當前年份
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
