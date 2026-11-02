@@ -14,7 +14,969 @@
     <!-- 自訂 CSS -->
     <link rel="stylesheet" href="css/myall.css">
 </head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+:root {
+
+    /* 網頁背景：明亮冰藍 */
+    --bg001: #edf7ff;
+
+    /* 卡片背景：純白 */
+    --bg002: #ffffff;
+
+    /* 主要科技藍 */
+    --primary-blue: #1769e0;
+
+    /* 次要科技藍 */
+    --secondary-blue: #42b7ff;
+
+    /* 輔助亮藍 */
+    --light-blue: #d9efff;
+
+    /* 標題文字：深海藍 */
+    --text001: #12315a;
+
+    /* 內文：深灰藍 */
+    --text002: #334b68;
+
+    /* 強調色：亮青藍 */
+    --accent-cyan: #00c9f2;
+
+    /* 邊框顏色 */
+    --border001: #c8e4ff;
+
+    /* 卡片陰影 */
+    --shadow001: 0 12px 35px rgba(30, 100, 180, 0.12);
+
+    /* 懸停陰影 */
+    --shadow002: 0 18px 45px rgba(23, 105, 224, 0.22);
+
+    /* 動畫時間 */
+    --transition-time: 0.6s;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(66, 183, 255, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 50%,
+            rgba(23, 105, 224, 0.08),
+            transparent 35%
+        ),
+        var(--bg001);
+
+    color: var(--text001);
+
+    font-family:
+        "Noto Sans TC",
+        "Microsoft JhengHei",
+        sans-serif;
+
+    line-height: 1.8;
+
+    overflow-x: hidden;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   03. Bootstrap 字體粗細擴充
+========================================= */
+
+.fw-100 {
+    font-weight: 100;
+}
+
+.fw-200 {
+    font-weight: 200;
+}
+
+.fw-300 {
+    font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-800 {
+    font-weight: 800;
+}
+
+.fw-900 {
+    font-weight: 900;
+}
+
+
+/* =========================================
+   04. 網頁大標題
+========================================= */
+
+.page-header {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #e4f3ff 50%,
+            #d1eaff 100%
+        );
+
+    color: #124da8 !important;
+
+    border: 1px solid #a9d6ff;
+
+    border-radius: 20px;
+
+    letter-spacing: 3px;
+
+    line-height: 1.5;
+
+    box-shadow:
+        0 10px 30px rgba(23, 105, 224, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+    overflow: hidden;
+
+    transition:
+        transform var(--transition-time) ease,
+        box-shadow var(--transition-time) ease;
+}
+
+/* 標題上方的裝飾光線 */
+
+.page-header::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 60%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00c9f2,
+            #1769e0,
+            transparent
+        );
+
+    transition: left 1s ease;
+}
+
+.page-header:hover::before {
+    left: 150%;
+}
+
+.page-header:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 16px 38px rgba(23, 105, 224, 0.2);
+}
+
+
+/* =========================================
+   05. 時間軸外層容器
+========================================= */
+
+.timeline-section,
+.timeline-section-pointer {
+    position: relative;
+
+    padding: 25px 0;
+}
+
+
+/* 桌面版中央時間軸 */
+
+.timeline-section::before,
+.timeline-section-pointer::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 50%;
+
+    width: 4px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #42b7ff 0%,
+            #1769e0 35%,
+            #00c9f2 70%,
+            #42b7ff 100%
+        );
+
+    transform: translateX(-50%);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 8px rgba(23, 105, 224, 0.2),
+        0 0 18px rgba(0, 201, 242, 0.25);
+}
+
+
+/* =========================================
+   06. 每一個時間軸區塊
+========================================= */
+
+.timeline-item {
+    display: flex;
+
+    align-items: stretch;
+
+    margin: 0 0 65px 0;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* 時間軸圓形節點 */
+
+.timeline-item::before {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 24px;
+    height: 24px;
+
+    background: #ffffff;
+
+    border: 5px solid var(--primary-blue);
+
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 5;
+
+    box-shadow:
+        0 0 0 6px rgba(66, 183, 255, 0.16),
+        0 0 18px rgba(23, 105, 224, 0.25);
+
+    transition:
+        width var(--transition-time) ease,
+        height var(--transition-time) ease,
+        background-color var(--transition-time) ease,
+        box-shadow var(--transition-time) ease;
+}
+
+
+/* 滑鼠經過時間軸節點 */
+
+.timeline-item:hover::before {
+    width: 36px;
+    height: 36px;
+
+    background: var(--accent-cyan);
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 0 8px rgba(66, 183, 255, 0.2),
+        0 0 25px rgba(0, 201, 242, 0.65);
+}
+
+
+/* =========================================
+   07. Bootstrap 欄位設定
+========================================= */
+
+.timeline-item > [class*="col-"] {
+    min-width: 0;
+}
+
+
+/* 圖片欄位垂直置中 */
+
+.timeline-item > .col-md-6 {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+/* =========================================
+   08. 圖片區域
+========================================= */
+
+.img-box {
+    width: 100%;
+
+    height: 360px;
+
+    position: relative;
+
+    background-position: center center;
+
+    background-size: cover;
+
+    background-repeat: no-repeat;
+
+    border-radius: 20px;
+
+    border: 2px solid #ffffff;
+
+    box-shadow: var(--shadow001);
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    transition:
+        transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+
+/* 圖片上方的柔和色彩 */
+
+.img-box::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(23, 105, 224, 0.12),
+            transparent 55%,
+            rgba(0, 201, 242, 0.12)
+        );
+
+    opacity: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    transition: opacity 0.6s ease;
+}
+
+
+/* 圖片下方的半透明遮罩 */
+
+.img-box::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(8, 39, 91, 0.76),
+            rgba(23, 105, 224, 0.62)
+        );
+
+    opacity: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.55s ease,
+        transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+
+/* 圖片滑鼠懸停 */
+
+.timeline-item:hover .img-box {
+    transform: translateY(-5px);
+
+    border-color: #8ddaff;
+
+    box-shadow: var(--shadow002);
+}
+
+.timeline-item:hover .img-box::before {
+    opacity: 1;
+}
+
+
+/* =========================================
+   09. Roller 從左到右
+   對應 .roller-r
+========================================= */
+
+.roller-r .img-box::after {
+    transform: translateX(-100%);
+}
+
+.roller-r:hover .img-box::after {
+    transform: translateX(0);
+}
+
+.roller-r:hover .img-box {
+    transform: translateX(5px);
+}
+
+
+/* =========================================
+   10. Roller 從右到左
+   對應 .roller-l
+========================================= */
+
+.roller-l .img-box::after {
+    transform: translateX(100%);
+}
+
+.roller-l:hover .img-box::after {
+    transform: translateX(0);
+}
+
+.roller-l:hover .img-box {
+    transform: translateX(-5px);
+}
+
+
+/* =========================================
+   11. Roller 從上到下
+   對應 .roller-t
+========================================= */
+
+.roller-t .img-box::after {
+    transform: translateY(-100%);
+}
+
+.roller-t:hover .img-box::after {
+    transform: translateY(0);
+}
+
+.roller-t:hover .img-box {
+    transform: translateY(5px);
+}
+
+
+/* =========================================
+   12. Roller 從下到上
+   對應 .roller-b
+========================================= */
+
+.roller-b .img-box::after {
+    transform: translateY(100%);
+}
+
+.roller-b:hover .img-box::after {
+    transform: translateY(0);
+}
+
+.roller-b:hover .img-box {
+    transform: translateY(-5px);
+}
+
+
+/* =========================================
+   13. Roller 圖片放大效果
+========================================= */
+
+.img-box {
+    background-origin: border-box;
+}
+
+/* 利用背景圖尺寸變化呈現柔和放大感 */
+
+.timeline-item:hover .img-box {
+    background-size: 108%;
+}
+
+
+/* =========================================
+   14. 文字卡片
+========================================= */
+
+.text-box {
+    padding: 35px;
+
+    min-height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(241, 249, 255, 0.96)
+        );
+
+    border-radius: 20px;
+
+    border: 1px solid #d6eaff;
+
+    box-shadow: var(--shadow001);
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease,
+        border-color 0.5s ease;
+}
+
+
+/* 卡片左側科技色線條 */
+
+.text-box::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 5px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #42b7ff,
+            #1769e0,
+            #00c9f2
+        );
+
+    border-radius: 20px 0 0 20px;
+
+    transition: width 0.4s ease;
+}
+
+
+/* 卡片右上方裝飾 */
+
+.text-box::after {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    top: -75px;
+    right: -75px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(66, 183, 255, 0.16),
+            rgba(66, 183, 255, 0)
+        );
+
+    pointer-events: none;
+}
+
+
+/* 滑鼠經過文字卡片 */
+
+.timeline-item:hover .text-box {
+    transform: translateY(-4px);
+
+    border-color: #9bd9ff;
+
+    box-shadow: var(--shadow002);
+}
+
+.timeline-item:hover .text-box::before {
+    width: 8px;
+}
+
+
+/* =========================================
+   15. 文字卡片標題
+========================================= */
+
+.text-box h2 {
+    font-size: 1.85rem;
+
+    font-weight: 900;
+
+    line-height: 1.45;
+
+    margin-bottom: 20px;
+
+    color: #124da8 !important;
+
+    letter-spacing: 0.5px;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* STEP 年代標籤 */
+
+.text-box h2 span {
+    display: block;
+
+    font-size: 0.78rem;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: #087cb8;
+
+    margin-bottom: 10px;
+
+    padding-left: 12px;
+
+    border-left: 4px solid #00bde8;
+}
+
+
+/* =========================================
+   16. 文字卡片內文
+========================================= */
+
+.text-box p {
+    font-size: 1.02rem;
+
+    font-weight: 400;
+
+    line-height: 2;
+
+    text-align: justify;
+
+    margin-bottom: 0;
+
+    color: #334b68;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   17. 頁尾
+========================================= */
+
+.footer-box {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #e2f3ff
+        );
+
+    border: 1px solid #b9ddff;
+
+    border-radius: 20px;
+
+    box-shadow: var(--shadow001);
+
+    color: #12315a;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.footer-box:hover {
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow002);
+}
+
+.footer-box h3 {
+    color: #1458b4;
+
+    font-size: 1.7rem;
+
+    margin-bottom: 12px;
+}
+
+.footer-box p {
+    color: #334b68;
+
+    font-size: 1rem;
+}
+
+
+/* =========================================
+   18. 平板版面
+========================================= */
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    .page-header {
+        font-size: 2.3rem;
+
+        letter-spacing: 2px;
+    }
+
+    .img-box {
+        height: 300px;
+    }
+
+    .text-box {
+        padding: 25px;
+    }
+
+    .text-box h2 {
+        font-size: 1.5rem;
+    }
+
+    .text-box p {
+        font-size: 0.95rem;
+
+        line-height: 1.9;
+    }
+}
+
+
+/* =========================================
+   19. 手機版面
+========================================= */
+
+@media (max-width: 767.98px) {
+
+    /* 時間軸移至左側 */
+
+    .timeline-section::before,
+    .timeline-section-pointer::before {
+        left: 15px;
+
+        width: 3px;
+
+        transform: none;
+    }
+
+
+    /* 每個時間軸區塊 */
+
+    .timeline-item {
+        margin: 0 0 45px 0;
+
+        padding-left: 30px;
+
+        flex-direction: column !important;
+    }
+
+
+    /* 手機版圓形節點 */
+
+    .timeline-item::before {
+        left: 15px;
+
+        top: 25px;
+
+        width: 20px;
+
+        height: 20px;
+
+        transform: translateX(-50%);
+    }
+
+    .timeline-item:hover::before {
+        width: 28px;
+
+        height: 28px;
+    }
+
+
+    /* 手機版欄位 */
+
+    .timeline-item > .col-md-6 {
+        width: 100%;
+    }
+
+
+    /* 圖片高度 */
+
+    .img-box {
+        height: 250px;
+
+        border-radius: 16px;
+    }
+
+
+    /* 文字卡片 */
+
+    .text-box {
+        padding: 24px;
+
+        margin-top: 18px;
+
+        border-radius: 16px;
+    }
+
+
+    /* 手機標題 */
+
+    .page-header {
+        font-size: 1.8rem;
+
+        padding: 24px 12px !important;
+
+        letter-spacing: 1px;
+
+        border-radius: 15px;
+    }
+
+
+    .text-box h2 {
+        font-size: 1.45rem;
+
+        margin-bottom: 16px;
+    }
+
+
+    .text-box h2 span {
+        font-size: 0.72rem;
+
+        letter-spacing: 1px;
+    }
+
+
+    /* 手機內文 */
+
+    .text-box p {
+        font-size: 0.95rem;
+
+        line-height: 1.9;
+
+        text-align: left;
+    }
+
+
+    /* 頁尾 */
+
+    .footer-box {
+        padding: 25px 18px !important;
+    }
+
+    .footer-box h3 {
+        font-size: 1.4rem;
+    }
+
+    .footer-box p {
+        font-size: 0.92rem;
+    }
+
+
+    /* 手機觸控不需要懸停位移 */
+
+    .timeline-item:hover .img-box {
+        transform: none;
+
+        background-size: cover;
+    }
+
+    .timeline-item:hover .text-box {
+        transform: none;
+    }
+}
+
+
+/* =========================================
+   20. 小尺寸手機
+========================================= */
+
+@media (max-width: 400px) {
+
+    .page-header {
+        font-size: 1.45rem;
+
+        letter-spacing: 0;
+    }
+
+    .img-box {
+        height: 210px;
+    }
+
+    .text-box {
+        padding: 20px;
+    }
+
+    .text-box h2 {
+        font-size: 1.25rem;
+    }
+
+    .text-box p {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* =========================================
+   21. 無障礙：減少動態效果
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
 <body>
 
     <div class="container">
